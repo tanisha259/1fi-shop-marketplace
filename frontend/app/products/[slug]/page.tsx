@@ -187,7 +187,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 function getVariantColor(colorStr: string) {
   const colorMap: Record<string, string> = {
     'natural titanium': '#B8B3A8',
-    'blue titanium': '#95999c',
+    'blue titanium': '#203a4e',
     'titanium gray': '#4f5360',
     'titanium black': '#2D2D2D',
     'obsidian': '#423f3f',
