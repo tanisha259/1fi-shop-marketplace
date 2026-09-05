@@ -8,6 +8,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   const [loading, setLoading] = useState(true);
   const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const [selectedEmiPlan, setSelectedEmiPlan] = useState<any>(null);
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -132,7 +133,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         <button 
           onClick={() => {
             if (selectedEmiPlan) {
-              alert(`Proceeding with ${selectedEmiPlan.tenureMonths} months EMI plan!`);
+              setShowModal(true);
             }
           }}
           className="w-full bg-[#5822B4] text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-purple-200 active:scale-[0.98] transition-transform"
@@ -140,6 +141,44 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           Proceed with Selected Plan
         </button>
       </div>
+
+      {/* Success Modal Overlay */}
+      {showModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
+            <div className="p-6 text-center">
+              <div className="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-100">
+                <svg className="w-8 h-8 text-[#5822B4]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">Plan Selected Successfully!</h3>
+              <p className="text-slate-500 text-sm mb-6">Your purchase application is ready.</p>
+              
+              <div className="bg-slate-50 rounded-xl p-4 text-left space-y-2 mb-6 border border-slate-100">
+                <p className="text-sm text-slate-800 font-semibold">{product.name}</p>
+                <p className="text-[13px] text-slate-500">{selectedVariant?.color}, {selectedVariant?.storage}</p>
+                <p className="text-[13px] text-slate-500 font-medium">Total: ₹{selectedVariant?.price.toLocaleString('en-IN')}</p>
+                <div className="h-px bg-slate-200 w-full my-2"></div>
+                <p className="text-[13px] font-bold text-[#5822B4]">{selectedEmiPlan?.tenureMonths} Months {selectedEmiPlan?.interestRate === 0 ? 'No-Cost ' : ''}EMI</p>
+              </div>
+              
+              <div className="space-y-3">
+                <button 
+                  onClick={() => setShowModal(false)}
+                  className="w-full bg-[#5822B4] text-white font-bold py-3.5 rounded-xl shadow-md active:scale-[0.98] transition-transform"
+                >
+                  Done
+                </button>
+                <button 
+                  onClick={() => router.push('/')}
+                  className="w-full bg-white text-slate-600 font-semibold py-3.5 rounded-xl border border-slate-200 active:scale-[0.98] transition-transform hover:bg-slate-50"
+                >
+                  Back to Marketplace
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
