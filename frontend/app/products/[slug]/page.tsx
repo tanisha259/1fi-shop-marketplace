@@ -58,11 +58,11 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           <h2 className="text-3xl font-medium text-slate-800 mb-1 leading-tight">{product.name}</h2>
           <p className="text-slate-500 text-sm mb-6">{selectedVariant?.storage}</p>
 
-          <div className="aspect-square bg-slate-50/50 rounded-2xl flex items-center justify-center mb-8 p-4">
+          <div className="w-full h-64 bg-white rounded-2xl flex items-center justify-center p-4 border border-slate-100 shadow-sm my-4">
             <img 
               src={selectedVariant?.imageUrl || 'https://via.placeholder.com/300'} 
               alt={product.name} 
-              className="max-h-full object-contain mix-blend-multiply drop-shadow-xl"
+              className="max-h-full max-w-full object-contain mx-auto drop-shadow-md"
             />
           </div>
 

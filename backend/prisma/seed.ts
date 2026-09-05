@@ -8,7 +8,7 @@ async function main() {
   await prisma.variant.deleteMany();
   await prisma.product.deleteMany();
 
-  // 1. iPhone 17 Pro (using Amazon images as stable placeholders)
+  // 1. iPhone 17 Pro
   const iphone = await prisma.product.create({
     data: {
       slug: 'iphone-17-pro',
@@ -16,8 +16,8 @@ async function main() {
       description: 'The ultimate iPhone.',
       variants: {
         create: [
-          { color: 'Natural Titanium', storage: '256GB', mrp: 134900, price: 127400, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/IPhone_15_Pro_Max_Natural_Titanium.svg/800px-IPhone_15_Pro_Max_Natural_Titanium.svg.png' },
-          { color: 'Blue Titanium', storage: '512GB', mrp: 154900, price: 147400, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/IPhone_15_Pro_Max_Blue_Titanium.svg/800px-IPhone_15_Pro_Max_Blue_Titanium.svg.png' },
+          { color: 'Natural Titanium', storage: '256GB', mrp: 134900, price: 127400, imageUrl: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=1000&hei=1000&fmt=p-jpg' },
+          { color: 'Black Titanium', storage: '512GB', mrp: 154900, price: 147400, imageUrl: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=1000&hei=1000&fmt=p-jpg' },
         ],
       },
       emiPlans: {
@@ -40,8 +40,8 @@ async function main() {
       description: 'Galaxy AI is here.',
       variants: {
         create: [
-          { color: 'Titanium Gray', storage: '256GB', mrp: 129999, price: 129999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Samsung_Galaxy_S24_Ultra.png/800px-Samsung_Galaxy_S24_Ultra.png' },
-          { color: 'Titanium Black', storage: '512GB', mrp: 139999, price: 139999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Samsung_Galaxy_S23_Ultra_Phantom_Black.svg/800px-Samsung_Galaxy_S23_Ultra_Phantom_Black.svg.png' },
+          { color: 'Titanium Gray', storage: '256GB', mrp: 129999, price: 129999, imageUrl: 'https://images.samsung.com/is/image/samsung/p6pim/in/2401/gallery/in-galaxy-s24-s928-sm-s928bztqins-thumb-539572620' },
+          { color: 'Titanium Black', storage: '512GB', mrp: 139999, price: 139999, imageUrl: 'https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/5/i/7/-original-mah9f83f2g99ghy2.jpeg' },
         ],
       },
       emiPlans: {
@@ -63,8 +63,8 @@ async function main() {
       description: 'The pro Google phone.',
       variants: {
         create: [
-          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Google_Pixel_9_Pro_%28Obsidian%29_front.svg/800px-Google_Pixel_9_Pro_%28Obsidian%29_front.svg.png' },
-          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Google_Pixel_9_Pro_%28Porcelain%29_front.svg/800px-Google_Pixel_9_Pro_%28Porcelain%29_front.svg.png' },
+          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Google_Pixel_8_Pro.png/800px-Google_Pixel_8_Pro.png' },
+          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Google_Pixel_8_Pro.png/800px-Google_Pixel_8_Pro.png' },
         ],
       },
       emiPlans: {
