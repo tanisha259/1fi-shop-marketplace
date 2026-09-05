@@ -63,8 +63,8 @@ async function main() {
       description: 'The pro Google phone.',
       variants: {
         create: [
-          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: '/images/pixel-black.jpg' },
-          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: '/images/pixel-white.jpg' },
+          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: '/images/pixel-blacknw.jpg' },
+          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: '/images/pixel-whitenw.jpg' },
         ],
       },
       emiPlans: {
