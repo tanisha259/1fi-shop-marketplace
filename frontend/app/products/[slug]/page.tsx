@@ -58,11 +58,11 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
           <h2 className="text-3xl font-medium text-slate-800 mb-1 leading-tight">{product.name}</h2>
           <p className="text-slate-500 text-sm mb-6">{selectedVariant?.storage}</p>
 
-          <div className="w-full h-80 flex items-center justify-center -mt-2 mb-10">
+          <div className="w-full flex items-center justify-center bg-transparent mb-10">
             <img 
               src={selectedVariant?.imageUrl || 'https://via.placeholder.com/300'} 
               alt={product.name} 
-              className="max-h-full max-w-full object-contain mx-auto mix-blend-multiply drop-shadow-2xl scale-125"
+              className="max-h-[280px] w-auto mx-auto object-contain drop-shadow-md"
             />
           </div>
 
@@ -76,7 +76,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   className={`w-7 h-7 rounded-full border-2 focus:outline-none transition-all ${
                     selectedVariant?.id === variant.id 
                       ? 'border-[#5822B4] scale-110 shadow-md ring-2 ring-purple-100 ring-offset-2' 
-                      : 'border-white ring-1 ring-slate-200'
+                      : 'border-slate-200 ring-1 ring-slate-200'
                   }`}
                   style={{ backgroundColor: getVariantColor(variant.color) }}
                   title={variant.color}
@@ -187,10 +187,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 function getVariantColor(colorStr: string) {
   const colorMap: Record<string, string> = {
     'natural titanium': '#B8B3A8',
-    'blue titanium': '#4F5B66',
-    'titanium gray': '#8C8C8C',
+    'blue titanium': '#95999c',
+    'titanium gray': '#4f5360',
     'titanium black': '#2D2D2D',
-    'obsidian': '#1E1E1E',
+    'obsidian': '#423f3f',
     'porcelain': '#E8E6E1',
   };
   return colorMap[colorStr.toLowerCase()] || '#cccccc';

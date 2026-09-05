@@ -16,8 +16,8 @@ async function main() {
       description: 'The ultimate iPhone.',
       variants: {
         create: [
-          { color: 'Natural Titanium', storage: '256GB', mrp: 134900, price: 127400, imageUrl: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=1000&hei=1000&fmt=p-jpg' },
-          { color: 'Black Titanium', storage: '512GB', mrp: 154900, price: 147400, imageUrl: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=1000&hei=1000&fmt=p-jpg' },
+          { color: 'Natural Titanium', storage: '256GB', mrp: 134900, price: 127400, imageUrl: '/images/iphone-white.jpg' },
+          { color: 'Black Titanium', storage: '512GB', mrp: 154900, price: 147400, imageUrl: '/images/iphone%20black.jpg' },
         ],
       },
       emiPlans: {
@@ -40,8 +40,8 @@ async function main() {
       description: 'Galaxy AI is here.',
       variants: {
         create: [
-          { color: 'Titanium Gray', storage: '256GB', mrp: 129999, price: 129999, imageUrl: 'https://m.media-amazon.com/images/I/71CXhVhpM0L._SX679_.jpg' },
-          { color: 'Titanium Black', storage: '512GB', mrp: 139999, price: 139999, imageUrl: 'https://m.media-amazon.com/images/I/71RVuQsAQcL._SX679_.jpg' },
+          { color: 'Titanium Gray', storage: '256GB', mrp: 129999, price: 129999, imageUrl: '/images/galaxy-white.jpg' },
+          { color: 'Titanium Black', storage: '512GB', mrp: 139999, price: 139999, imageUrl: '/images/galaxy-black.jpg' },
         ],
       },
       emiPlans: {
@@ -63,8 +63,8 @@ async function main() {
       description: 'The pro Google phone.',
       variants: {
         create: [
-          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: 'https://m.media-amazon.com/images/I/71Q3iSQAwAL._SX679_.jpg' },
-          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: 'https://m.media-amazon.com/images/I/71b2zCS4E+L._SX679_.jpg' },
+          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: '/images/pixel-black.jpg' },
+          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: '/images/pixel-white.jpg' },
         ],
       },
       emiPlans: {

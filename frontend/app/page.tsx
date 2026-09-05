@@ -69,11 +69,11 @@ export default async function Home() {
               products.map((product: any) => (
                 <Link href={`/products/${product.slug}`} key={product.id}>
                   <div className="bg-white rounded-[20px] p-4 shadow-sm border border-slate-200 flex gap-4 active:scale-[0.98] transition-transform mb-4">
-                    <div className="w-28 h-32 shrink-0 flex items-center justify-center -ml-2 -mt-2">
+                    <div className="w-28 h-32 shrink-0 flex items-center justify-center bg-white rounded-xl p-2">
                       <img
                         src={product.variants[0]?.imageUrl}
                         alt={product.name}
-                        className="object-contain w-full h-full mix-blend-multiply scale-110 drop-shadow-md"
+                        className="object-contain max-h-[160px] w-auto mx-auto"
                       />
                     </div>
                     <div className="flex flex-col justify-center flex-1">
