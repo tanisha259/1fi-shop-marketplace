@@ -41,7 +41,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   }
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-32 font-sans">
+    <div className="bg-slate-50 min-h-screen pb-48 font-sans">
       {/* Header */}
       <div className="bg-white px-4 py-4 sticky top-0 z-10 shadow-sm flex items-center">
         <button onClick={() => router.back()} className="mr-4 p-2 -ml-2 rounded-full hover:bg-slate-100">
@@ -128,14 +128,14 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
       </div>
 
       {/* Action Button - Sticky Bottom */}
-      <div className="fixed bottom-0 w-full max-w-md bg-white border-t border-slate-200 p-4 pb-8 z-20 shadow-[0_-4px_15px_-3px_rgba(0,0,0,0.05)]">
+      <div className="fixed bottom-[64px] w-full max-w-md bg-white border-t border-slate-200 p-4 z-20 shadow-[0_-4px_15px_-3px_rgba(0,0,0,0.05)]">
         <button 
           onClick={() => {
             if (selectedEmiPlan) {
               alert(`Proceeding with ${selectedEmiPlan.tenureMonths} months EMI plan!`);
             }
           }}
-          className="w-full bg-[#5822B4] text-white font-bold py-3.5 rounded-xl shadow-lg shadow-purple-200 active:scale-[0.98] transition-transform"
+          className="w-full bg-[#5822B4] text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-purple-200 active:scale-[0.98] transition-transform"
         >
           Proceed with Selected Plan
         </button>
