@@ -41,7 +41,7 @@ async function main() {
       variants: {
         create: [
           { color: 'Titanium Gray', storage: '256GB', mrp: 129999, price: 129999, imageUrl: 'https://m.media-amazon.com/images/I/71CXhVhpM0L._SX679_.jpg' },
-          { color: 'Titanium Black', storage: '512GB', mrp: 139999, price: 139999, imageUrl: 'https://m.media-amazon.com/images/I/71RVuQsAQcL._SX679_.jpg' },
+          { color: 'Titanium Black', storage: '512GB', mrp: 139999, price: 139999, imageUrl: 'https://images.samsung.com/is/image/samsung/p6pim/in/sm-s928bzkqins/gallery/in-galaxy-s24-s928-sm-s928bzkqins-539573352' },
         ],
       },
       emiPlans: {
@@ -63,8 +63,8 @@ async function main() {
       description: 'The pro Google phone.',
       variants: {
         create: [
-          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: 'https://m.media-amazon.com/images/I/71Q3iSQAwAL._SX679_.jpg' },
-          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: 'https://m.media-amazon.com/images/I/71b2zCS4E+L._SX679_.jpg' },
+          { color: 'Obsidian', storage: '256GB', mrp: 106999, price: 106999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Google_Pixel_9_Pro_%28Obsidian%29_front.svg' },
+          { color: 'Porcelain', storage: '512GB', mrp: 115999, price: 115999, imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Google_Pixel_9_Pro_%28Porcelain%29_front.svg' },
         ],
       },
       emiPlans: {
