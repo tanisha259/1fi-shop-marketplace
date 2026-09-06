@@ -5,7 +5,14 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   let products = [];
   try {
-    const res = await fetch('/api/products', { cache: 'no-store' });
+    const backendUrl =
+      process.env.BACKEND_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? 'https://1fi-backend.onrender.com'
+        : 'http://localhost:5000');
+    const res = await fetch(`${backendUrl}/api/products`, {
+      cache: 'no-store',
+    });
     if (res.ok) {
       products = await res.json();
     }

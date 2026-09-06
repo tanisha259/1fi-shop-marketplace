@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: 1fi-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
