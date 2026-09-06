@@ -21,6 +21,14 @@ app.use(
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.json({
+    service: '1Fi Marketplace API',
+    status: 'ok',
+    health: '/api/health',
+  });
+});
+
 // Routes
 app.use('/api/products', productRoutes);
 
