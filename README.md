@@ -1,73 +1,203 @@
-# 1Fi SDE Intern Assignment - Marketplace
+# 1Fi Marketplace
 
-This repository contains the full-stack implementation of the 1Fi Marketplace feature. It is divided into a rontend and a ackend.
+A full-stack marketplace prototype for browsing products, comparing variants, and selecting EMI plans backed by mutual funds.
 
-## ?? Tech Stack Used
+## Features
 
-**Frontend:**
-- React
-- Next.js (App Router)
-- Tailwind CSS
-- TypeScript
+- Marketplace listing with product names, storage options, and available EMI tenures.
+- Product detail pages with variant selection and pricing.
+- EMI plan selection with tenure, monthly amount, interest rate, and cashback details.
+- Responsive Next.js interface designed for mobile-first browsing.
+- PostgreSQL persistence through Prisma ORM.
 
-**Backend:**
-- Node.js
-- Express
-- PostgreSQL
-- Prisma ORM
-- TypeScript
-
-## ?? Setup and Run Instructions
+## Setup and Run Instructions
 
 ### Prerequisites
-- Node.js installed
-- PostgreSQL running locally (or a remote Postgres URL like NeonDB)
 
-### Backend Setup
-1. Navigate to the backend directory:
-   `bash
-   cd backend
-   `
-2. Install dependencies:
-   `bash
-   npm install
-   `
-3. Set up the .env file with your database connection string:
-   `env
-   DATABASE_URL="postgresql://user:password@localhost:5432/dbname?schema=public"
-   PORT=5000
-   `
-4. Push the schema to the database and generate the Prisma client:
-   `bash
-   npx prisma db push
-   `
-5. Seed the database with the mock products and EMI plans:
-   `bash
-   npm run seed
-   `
-6. Start the backend development server:
-   `bash
-   npm run dev
-   `
+- Node.js 18 or later
+- PostgreSQL running locally or a hosted PostgreSQL database
 
-### Frontend Setup
-1. Open a new terminal and navigate to the frontend directory:
-   `bash
-   cd frontend
-   `
-2. Install dependencies:
-   `bash
-   npm install
-   `
-3. Start the Next.js development server:
-   `bash
-   npm run dev
-   `
-4. Open your browser and navigate to http://localhost:3000. Use Developer Tools to view the app in mobile resolution for the best experience.
+### 1. Configure the database
 
-## ??? Schema Used (Prisma)
+Create `backend/.env`:
 
-`prisma
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/dbname?schema=public"
+PORT=5000
+```
+
+### 2. Install and start the backend
+
+```bash
+cd backend
+npm install
+npx prisma generate
+npx prisma db push
+npm run seed
+npm run dev
+```
+
+The API runs at `http://localhost:5000`.
+
+### 3. Install and start the frontend
+
+Open a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in a browser. The frontend is configured to fetch product data from the backend at `http://localhost:5000`.
+
+### Production commands
+
+```bash
+# Backend
+cd backend
+npm run build
+npm start
+
+# Frontend
+cd frontend
+npm run build
+npm start
+```
+
+## API Endpoints
+
+All endpoints return JSON. The backend base URL is `http://localhost:5000` during local development.
+
+### Health check
+
+`GET /api/health`
+
+Example response:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+### Get all products
+
+`GET /api/products`
+
+Returns every product with its first variant and the EMI plan with the lowest monthly amount. This shape is used by the marketplace listing.
+
+Example response:
+
+```json
+[
+  {
+    "id": "uuid-string",
+    "slug": "iphone-17-pro",
+    "name": "iPhone 17 Pro",
+    "description": "The ultimate iPhone.",
+    "variants": [
+      {
+        "id": "variant-uuid",
+        "productId": "uuid-string",
+        "color": "Natural Titanium",
+        "storage": "256GB",
+        "mrp": 134900,
+        "price": 127400,
+        "imageUrl": "/images/iphone-white.jpg"
+      }
+    ],
+    "emiPlans": [
+      {
+        "id": "emi-uuid",
+        "productId": "uuid-string",
+        "monthlyAmount": 4297,
+        "tenureMonths": 36,
+        "interestRate": 10.5,
+        "cashbackInfo": "Additional cashback of ₹7,500"
+      }
+    ]
+  }
+]
+```
+
+### Get product details
+
+`GET /api/products/:slug`
+
+Returns all variants and all EMI plans for the requested product. EMI plans are sorted by `tenureMonths` in ascending order.
+
+Example request:
+
+```text
+GET http://localhost:5000/api/products/iphone-17-pro
+```
+
+Example response:
+
+```json
+{
+  "id": "uuid-string",
+  "slug": "iphone-17-pro",
+  "name": "iPhone 17 Pro",
+  "description": "The ultimate iPhone.",
+  "variants": [
+    {
+      "id": "variant-uuid",
+      "productId": "uuid-string",
+      "color": "Natural Titanium",
+      "storage": "256GB",
+      "mrp": 134900,
+      "price": 127400,
+      "imageUrl": "/images/iphone-white.jpg"
+    }
+  ],
+  "emiPlans": [
+    {
+      "id": "emi-uuid",
+      "productId": "uuid-string",
+      "monthlyAmount": 44967,
+      "tenureMonths": 3,
+      "interestRate": 0,
+      "cashbackInfo": "Additional cashback of ₹7,500"
+    }
+  ]
+}
+```
+
+If the slug does not exist, the endpoint returns:
+
+```json
+{
+  "error": "Product not found"
+}
+```
+
+with HTTP status `404`. Database or server failures return `500` with `{ "error": "Internal server error" }`.
+
+## Tech Stack
+
+### Frontend
+
+- Next.js 16 with the App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+
+### Backend
+
+- Node.js
+- Express 4
+- TypeScript
+- Prisma 5
+- PostgreSQL
+- CORS and dotenv
+
+## Database Schema
+
+The schema is defined in `backend/prisma/schema.prisma` and contains three related models:
+
+```prisma
 model Product {
   id          String     @id @default(uuid())
   slug        String     @unique
@@ -97,76 +227,6 @@ model EmiPlan {
   cashbackInfo  String?
   product       Product @relation(fields: [productId], references: [id])
 }
-`
+```
 
-## ?? API Endpoints
-
-### 1. Get All Products
-**Endpoint:** GET /api/products
-
-**Description:** Fetches a list of all products in the marketplace, including their default variant and the base starting EMI plan.
-
-**Example Response:**
-`json
-[
-  {
-    "id": "uuid-string",
-    "slug": "iphone-17-pro",
-    "name": "iPhone 17 Pro",
-    "description": "The ultimate iPhone.",
-    "variants": [
-      {
-        "id": "variant-uuid",
-        "productId": "uuid-string",
-        "color": "Natural Titanium",
-        "storage": "256GB",
-        "mrp": 134900,
-        "price": 127400,
-        "imageUrl": "https://example.com/image.jpg"
-      }
-    ],
-    "emiPlans": [
-      {
-        "id": "emi-uuid",
-        "productId": "uuid-string",
-        "monthlyAmount": 4297,
-        "tenureMonths": 36,
-        "interestRate": 10.5,
-        "cashbackInfo": "Additional cashback of ?7,500"
-      }
-    ]
-  }
-]
-`
-
-### 2. Get Single Product Details
-**Endpoint:** GET /api/products/:slug
-
-**Description:** Fetches the complete details for a single product based on its slug, including ALL associated variants and ALL available EMI plans sorted by tenure.
-
-**Example Response:**
-`json
-{
-  "id": "uuid-string",
-  "slug": "iphone-17-pro",
-  "name": "iPhone 17 Pro",
-  "description": "The ultimate iPhone.",
-  "variants": [
-    {
-      "color": "Natural Titanium",
-      "storage": "256GB",
-      "mrp": 134900,
-      "price": 127400,
-      "imageUrl": "https://example.com/image-1.jpg"
-    }
-  ],
-  "emiPlans": [
-    {
-      "monthlyAmount": 44967,
-      "tenureMonths": 3,
-      "interestRate": 0,
-      "cashbackInfo": "Additional cashback of ?7,500"
-    }
-  ]
-}
-`
+`Product` is the parent record. Each product can have multiple `Variant` records for color, storage, pricing, and images, and multiple `EmiPlan` records for available payment options.
