@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://1fi-backend.onrender.com/api/:path*",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -14,7 +14,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
   useEffect(() => {
     // Await params to be safe across Next 14 and Next 15 versions
     Promise.resolve(params).then((resolvedParams) => {
-      fetch(`http://localhost:5000/api/products/${resolvedParams.slug}`)
+      fetch(`/api/products/${resolvedParams.slug}`)
         .then((res) => res.json())
         .then((data) => {
           setProduct(data);

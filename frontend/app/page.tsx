@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   let products = [];
   try {
-    const res = await fetch('http://localhost:5000/api/products', { cache: 'no-store' });
+    const res = await fetch('/api/products', { cache: 'no-store' });
     if (res.ok) {
       products = await res.json();
     }
